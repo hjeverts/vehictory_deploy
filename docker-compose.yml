@@ -48,7 +48,7 @@ services:
       Admin__BootstrapEmails: ${ADMIN_EMAILS:-}
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Production}
     ports:
-      - "${API_PORT:-5080}:8080"
+      - "127.0.0.1:${API_PORT:-5080}:8080" # alleen lokaal bereikbaar; de frontend-nginx bereikt de API via het interne compose-netwerk (api:8080), niet via deze poort
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://localhost:8080/api/health || exit 1"]
       interval: 10s
